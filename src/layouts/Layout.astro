@@ -58,13 +58,6 @@ const {
     
     <div class="foam-layer"></div>
     
-    <script>
-      (function () {
-        var saved = localStorage.getItem('theme');
-        if (saved) document.documentElement.setAttribute('data-theme', saved);
-      })();
-    </script>
-    
     <div class="drawer drawer-end">
       <input id="app-drawer" type="checkbox" class="drawer-toggle" />
       
@@ -80,23 +73,6 @@ const {
         <Footer client:load />
         
         <MobileFAB client:load currentPath={currentPath} />
-      </div>
-      
-      <!-- Mobile Drawer Side -->
-      <div class="drawer-side z-[60]">
-        <label for="app-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-        <div class="mobile-menu-glass menu flex min-h-full w-80 flex-col items-end gap-2 p-6 pt-14">
-          <label for="app-drawer" class="drawer-close-btn" aria-label="Đóng menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 6 6 18"/>
-              <path d="m6 6 12 12"/>
-            </svg>
-          </label>
-          
-          <a href="/" class={`mobile-link ${currentPath === '/' ? 'active' : ''}`}>Trang chủ</a>
-          <a href="/posts" class={`mobile-link ${currentPath.startsWith('/posts') ? 'active' : ''}`}>Bài viết</a>
-          <a href="/markdown-for-agents" class={`mobile-link ${currentPath === '/markdown-for-agents' ? 'active' : ''}`}>Markdown</a>
-        </div>
       </div>
     </div>
   </body>
