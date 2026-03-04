@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.svelte';
+import { getPostsByCategory, categories } from '../../data/posts';
+
+export function getStaticPaths() {
+  return categories.map(cat => ({
+    params: { category: cat.slug },
+    props: { category: cat }
+  }));
+}
+
+const { category } = Astro.props;
+const categoryPosts = getPostsByCategory(category.slug);
+---
+
+<Layout title={`${category.label} - claw.ai.vn`}>
+  <main class="main-content">
+    <div class="content-container">
+      <section class="category-header">
+        <h1 class="category-title">{category.label}</h1>
+        <p class="category-description">
+          Tổng hợp các bài viết về {category.label.toLowerCase()}
+        </p>
+      </section>
+
+      <section class="posts-grid">
+        {categoryPosts.length > 0 ? (
+          categoryPosts.map((post, index) => (
+            <div style={`animation-delay: ${index * 0.1}s`}>
+              <PostCard 
+                client:load 
+                post={{
+                  title: post.title,
+                  excerpt: post.excerpt,
+                  slug: post.slug,
+                  categorySlug: category.slug,
+                  publishedAt: post.publishedAt,
+                  featuredImageUrl: post.featuredImageUrl,
+                  featuredImageAlt: post.featuredImageAlt
+                }}
+                index={index}
+              />
+            </div>
+          ))
+        ) : (
+          <div class="no-posts">
+            <p>Chưa có bài viết nào trong chuyên mục này.</p>
+          </div>
+        )}
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .category-header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+  }
+
+  .category-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .category-description {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    padding: 0 1rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .posts-grid > div {
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .no-posts {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

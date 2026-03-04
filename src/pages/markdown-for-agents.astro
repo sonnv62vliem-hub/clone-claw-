@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MarkdownConverter from '../components/MarkdownConverter.svelte';
+---
+
+<Layout 
+  title="Markdown for Agents — Tăng Tốc OpenClaw và Tiết Kiệm Quota LLM"
+  description="Markdown for Agents giúp chuyển URL sang markdown sạch cho OpenClaw và AI Agent, tăng tốc xử lý, giảm token context và tiết kiệm quota LLM."
+  canonical="https://claw.ai.vn/markdown-for-agents"
+  currentPath="/markdown-for-agents"
+>
+  <MarkdownConverter client:load />
+</Layout>

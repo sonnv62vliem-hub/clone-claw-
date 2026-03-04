@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.svelte';
+import { posts, categories } from '../../data/posts';
+
+// Sort by publishedAt desc
+const sortedPosts = [...posts].sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime());
+---
+
+<Layout 
+  title="Bài viết — claw.ai.vn"
+  description="Tất cả bài viết về OpenClaw AI, hướng dẫn, tin tức AI và ứng dụng thực tế."
+  currentPath="/posts"
+  canonical="https://claw.ai.vn/posts"
+>
+  <div class="posts-page">
+    <div class="posts-header">
+      <h1>Bài viết</h1>
+      <p>Hướng dẫn, tin tức và ứng dụng AI thực tế</p>
+    </div>
+    
+    <!-- Category Filters -->
+    <div class="category-filters">
+      <a href="/posts" class="category-btn active">Tất cả</a>
+      {categories.map(cat => (
+        <a href={`/posts?category=${cat.slug}`} class="category-btn">
+          {cat.label}
+        </a>
+      ))}
+    </div>
+    
+    <!-- Posts Grid -->
+    <div class="posts-grid">
+      {sortedPosts.map((post, index) => (
+        <PostCard client:visible post={post} index={index} />
+      ))}
+    </div>
+  </div>
+</Layout>

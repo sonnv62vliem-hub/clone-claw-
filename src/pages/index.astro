@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PostCard from '../components/PostCard.svelte';
+import { getLatestPosts } from '../data/posts';
+
+const latestPosts = getLatestPosts(3);
+
+const features = [
+  {
+    icon: 'icon-[lucide--zap]',
+    title: 'Tạo OpenClaw cá nhân',
+    desc: 'Thiết lập OpenClaw cho nhu cầu riêng của bạn để nó trở thành <strong>trợ lý AI cá nhân</strong> thực thụ.',
+  },
+  {
+    icon: 'icon-[lucide--message-circle]',
+    title: 'Tùy chỉnh tính cách agent',
+    desc: 'Học cách định nghĩa giọng điệu, phong cách phản hồi và hành vi để agent làm việc đúng cách bạn mong muốn.',
+  },
+  {
+    icon: 'icon-[lucide--bell-ring]',
+    title: 'Automation từ dễ đến khó',
+    desc: 'Bắt đầu với tác vụ đơn giản, sau đó nâng dần lên quy trình phức tạp để AI xử lý nhiều việc hơn cho bạn.',
+  },
+  {
+    icon: 'icon-[lucide--terminal]',
+    title: 'Lộ trình học có hệ thống',
+    desc: 'Mỗi bước đều có mục tiêu rõ ràng để bạn không bị ngợp và có thể <strong>hòa nhập nhanh với cuộc sống AI hiện tại</strong>.',
+  },
+];
+---
+
+<Layout 
+  title="claw.ai.vn — OpenClaw AI Cho Người Mới và Ứng Dụng AI Thực Tế"
+  description="OpenClaw AI cho người mới và mở rộng sang AI ứng dụng thực tế: tạo trợ lý cá nhân, tùy chỉnh agent, xây automation theo lộ trình rõ ràng."
+  currentPath="/"
+>
+  <!-- Hero Section -->
+  <section class="landing-hero">
+    <div class="landing-hero-glow"></div>
+    
+    <img 
+      src="https://claw.ai.vn/_app/immutable/assets/claw-logo-red.DgE5HcFa.png" 
+      alt="OpenClaw" 
+      class="landing-hero-logo"
+    />
+    
+    <h1 class="landing-hero-title">
+      <span class="landing-hero-accent">OpenClaw AI</span> và AI ứng dụng
+    </h1>
+    
+    <p class="landing-hero-tagline">LỘ TRÌNH AI DỄ BẮT ĐẦU CHO NGƯỜI MỚI</p>
+    
+    <p class="landing-hero-sub">
+      Học cách xây OpenClaw thành trợ lý AI cá nhân và ứng dụng AI vào công việc, đời sống hằng ngày.<br />
+      Lộ trình được thiết kế cho người mới, kể cả khi bạn chưa biết code.
+    </p>
+    
+    <div class="landing-hero-actions">
+      <a href="/docs/cai-dat-ai-agent-ca-nhan-tren-may-tinh-khong-can-server-cloud">
+        <button class="glass-btn primary" type="button">
+          Bắt đầu với OpenClaw
+        </button>
+      </a>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section class="features delay-1">
+    <h2 class="section-title">Nắm chắc keyword - Thoải mái custom</h2>
+    
+    <div class="features-grid">
+      {features.map((feature) => (
+        <div class="feature-hover hover-3d" role="presentation">
+          <div class="glass-card feature-card">
+            <div class={`feature-icon ${feature.icon}`}></div>
+            <h3 class="feature-title">{feature.title}</h3>
+            <p class="feature-desc" set:html={feature.desc}></p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+  
+  <!-- Latest Posts Section -->
+  <section class="latest">
+    <h2 class="section-title delay-2">Bài viết mới</h2>
+    
+    <div class="posts-grid">
+      {latestPosts.map((post, index) => (
+        <PostCard client:visible post={post} index={index} />
+      ))}
+    </div>
+    
+    <div class="view-all delay-6">
+      <a href="/posts">
+        <button class="glass-btn ghost" type="button">
+          Xem tất cả bài viết →
+        </button>
+      </a>
+    </div>
+  </section>
+</Layout>
