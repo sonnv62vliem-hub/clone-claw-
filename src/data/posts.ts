@@ -328,7 +328,16 @@ openclaw approvals grant exec /path/to/script.sh</code></pre>`,
 
 <p>Trước khi bắt đầu, bạn cần cài đặt một số công cụ cơ bản:</p>
 
-<pre><code class="language-bash"># Cài đặt Node.js
+<!-- Tabs Component -->
+<div class="tabs-block">
+  <div class="tabs-list">
+    <button class="tab-item active">npm</button>
+    <button class="tab-item">yarn</button>
+    <button class="tab-item">pnpm</button>
+  </div>
+  
+  <div class="tab-content active">
+    <pre><code class="language-bash"># Cài đặt Node.js
 # Tải từ https://nodejs.org
 
 # Kiểm tra cài đặt
@@ -336,6 +345,30 @@ node --version
 
 # Cài đặt MCP SDK
 npm install -g @modelcontextprotocol/sdk</code></pre>
+  </div>
+  
+  <div class="tab-content">
+    <pre><code class="language-bash"># Cài đặt Node.js
+# Tải từ https://nodejs.org
+
+# Kiểm tra cài đặt
+node --version
+
+# Cài đặt MCP SDK
+yarn global add @modelcontextprotocol/sdk</code></pre>
+  </div>
+  
+  <div class="tab-content">
+    <pre><code class="language-bash"># Cài đặt Node.js
+# Tải từ https://nodejs.org
+
+# Kiểm tra cài đặt
+node --version
+
+# Cài đặt MCP SDK
+pnpm add -g @modelcontextprotocol/sdk</code></pre>
+  </div>
+</div>
 
 <h3>Yêu cầu hệ thống</h3>
 
@@ -420,12 +453,24 @@ server.setRequestHandler('tools/list', async () => {
 
 <p>Sau khi hoàn tất cấu hình, hãy chạy server:</p>
 
-<pre><code class="language-bash"># Chạy ở chế độ development
-npm run dev
-
-# Hoặc build và chạy production
+<!-- Tabs for running -->
+<div class="tabs-block">
+  <div class="tabs-list">
+    <button class="tab-item active">Development</button>
+    <button class="tab-item">Production</button>
+  </div>
+  
+  <div class="tab-content active">
+    <pre><code class="language-bash"># Chạy ở chế độ development
+npm run dev</code></pre>
+  </div>
+  
+  <div class="tab-content">
+    <pre><code class="language-bash"># Build và chạy production
 npm run build
 npm start</code></pre>
+  </div>
+</div>
 
 <h3>Kết nối với OpenClaw</h3>
 

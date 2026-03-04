@@ -96,6 +96,35 @@ const canonical = `https://claw.ai.vn/${post.categorySlug}/${post.slug}`;
   </article>
 </Layout>
 
+<script>
+  // Initialize tabs functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    // Find all tabs-block elements
+    const tabsBlocks = document.querySelectorAll('.tabs-block');
+    
+    tabsBlocks.forEach((tabsBlock) => {
+      const tabButtons = tabsBlock.querySelectorAll('.tab-item');
+      const tabContents = tabsBlock.querySelectorAll('.tab-content');
+      
+      tabButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+          // Remove active class from all buttons
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          // Add active class to clicked button
+          button.classList.add('active');
+          
+          // Hide all contents
+          tabContents.forEach(content => content.classList.remove('active'));
+          // Show selected content
+          if (tabContents[index]) {
+            tabContents[index].classList.add('active');
+          }
+        });
+      });
+    });
+  });
+</script>
+
 <style>
   .post-short-desc {
     font-size: 1.1rem;
