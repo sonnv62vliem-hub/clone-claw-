@@ -351,3 +351,22 @@
 .drawer-close-btn:hover {
   color: var(--text-primary);
 }
+
+/* ===== NAVBAR LOGO THEME CONTROL ===== */
+/* Default (light theme): show light logo, hide dark logo */
+.logo-light {
+  display: block;
+}
+
+.logo-dark {
+  display: none;
+}
+
+/* Dark theme: show dark logo, hide light logo */
+[data-theme="lobsterglass-dark"] .logo-light {
+  display: none;
+}
+
+[data-theme="lobsterglass-dark"] .logo-dark {
+  display: block;
+}
