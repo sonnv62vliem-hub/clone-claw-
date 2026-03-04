@@ -1,0 +1,6 @@
+# Static redirects for Cloudflare Pages
+# Format: /source /destination [status]
+
+# Example redirects (uncomment and modify as needed):
+# /old-url /new-url 301
+# /docs/* /docs/:splat 200
