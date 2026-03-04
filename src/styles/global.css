@@ -303,40 +303,9 @@
   cursor: pointer;
 }
 
+/* Mobile menu glass - let DaisyUI handle the drawer */
 .mobile-menu-glass {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 320px;
-  max-width: 80vw;
-  height: 100vh;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  border-left: 1px solid var(--glass-border);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding: 1.5rem;
-  padding-top: 3.5rem;
-  gap: 0.5rem;
-  z-index: 100;
-  overflow-y: auto;
-  /* Hidden by default - slide out to the right */
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-}
-
-/* Show menu when drawer is checked */
-.drawer-toggle:checked ~ .drawer-side .mobile-menu-glass {
-  transform: translateX(0);
-}
-
-/* Hide drawer side on desktop */
-@media (min-width: 1024px) {
-  .drawer-side {
-    display: none !important;
-  }
+  /* DaisyUI drawer handles positioning */
 }
 
 /* Drawer overlay */
